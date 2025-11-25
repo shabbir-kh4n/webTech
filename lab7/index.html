@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>
+        Create Object from JSON String
+    </h2>
+    <button id="Me">Click me</button>
+    <div id="content">Content</div>
+    <hr>
+
+
+    <h2>Convert Json into date</h2>
+    <p>Click below button to convert json into date</p>
+    <button onclick="convert()">Click me</button>
+    <p>Input: /Date(1536541520000)/</p>
+    <div id="date">Result will appear here</div>
+    <hr>
+
+    <h2>Json to CSV</h2>
+    <div id="csv"></div>
+    <hr>
+
+    <h2>CSV to Json</h2>
+    <input type="file" id="csv-file" accept=".csv">
+    <div id="json"></div>
+    
+
+    <script>
+        //a) text into object
+        let text = '{"Name": "Shabbir","Age": 24,"Gender": "male"}';
+        let data = JSON.parse(text);
+        document.getElementById("Me").addEventListener('click', () => {
+            document.getElementById('content').innerHTML = data.Name + ", " + data.Age;
+        })
+
+
+        //b) Json result into date
+        function convert() {
+            let x = '/Date(1536541520000)/';  //You can give any number it will work same 😂
+            x = x.replace('/Date(', ''); //skip this line
+            x = x.replace(')/', '');     //this also just dlt this 2 line (useless)
+            document.getElementById('date').innerHTML = Date(parseInt(x));
+        }
+
+        //c) json to csv
+        let json = [
+            {
+                "id": 1,
+                "name": "John Doe",
+                "age": 30,
+                "department": "Engineering"
+            },
+            {
+                "id": 2,
+                "name": "Jane Smith",
+                "age": 28,
+                "department": "Marketing"
+            }
+        ]
+
+        function JsonToCsv() {
+            let csv = '';
+
+            let headers = Object.keys(json[0])
+
+            csv += headers.join(',') + '\n';
+            json.forEach(element => {
+                let x = headers.map(i => element[i]);
+                csv += x + '\n'
+            })
+            document.getElementById('csv').innerHTML = '<pre>' + csv + '</pre>';
+            return csv;
+        }
+        let csv = JsonToCsv();
+
+
+        //d) csv to json
+        function csvToJson(csvString){
+            let rows = csvString.split('\n');
+            let headers = rows[0].split(',');
+            let jsonData = [];
+
+            for(let i=1 ; i<rows.length-1; i++){
+                let values = rows[i].split(',');
+                let obj = {};
+                for(let j = 0; j<headers.length; j++){
+                    obj[headers[j]] = values[j];
+                }
+                jsonData.push(obj);
+            }
+            document.getElementById('json').innerHTML = '<pre>'+JSON.stringify(jsonData,null,2)+'</pre>';
+        }
+        csvToJson(csv)
+
+    </script>
+</body>
+
+</html>
