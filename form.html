@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .form{
+            display: flex;
+            flex-direction: column;
+            background-color: antiquewhite;
+            width: 39%;
+            margin: auto;
+            align-items: center;
+            border-radius: 10px;
+            margin-top: 100px;
+            box-shadow: 2px 2px 50px black;
+        }
+
+        h1{
+            text-align: center;
+        }
+
+        th{
+            padding-right: 50px;
+        }
+
+        tr{
+            height: 50px;
+        }
+
+        button{
+            height: 40px;
+            width: 500px;
+            margin: 20px;
+            /* background-color: rgb(199, 102, 70); */
+            border: hidden;
+            border-radius: 5px;
+            box-shadow: 1px 1px 5px black;
+            cursor: pointer;
+            background-image: linear-gradient(to right, rgb(199, 102, 70),white);
+            transition: ease-in .2s;
+            font-weight: 700;
+        }
+
+        button:hover{
+            background-image: linear-gradient(to right, white,rgb(199, 102, 70));
+            box-shadow: 5px 5px 10px black;
+            transform: scaleX(1.02) scaleY(1.02);
+        }
+
+        body{
+            background-color: rgb(58, 58, 58);
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="form">
+        <h1>Registration form</h1>
+        <form action="#">
+            <table>
+                <tr>
+                    <th><label for="name">First Name:</label></th>
+                    <td><input type="text" name="FirstName" placeholder="FirstName" required="required"></td>
+                </tr>
+                <tr>
+                    <th><label for="lastname">Last Name:</label></th>
+                    <td><input type="text" name="LastName" placeholder="LastName" required="required"></td>
+                    
+                </tr>
+                <tr>
+                    <th><label for="Password" length="5">Password:</label></th>
+                    <td><input type="password" name="password" placeholder="Password" required="required"></td>
+                </tr>
+                <tr>
+                    <th><label for="Gender">Gender:</label></th>
+                    <td>
+                        <input type="radio" name="gender" value="Male" required="required">
+                        <label for="male">Male</label>
+                        <input type="radio" name="gender" value="Female" required="required">
+                        <label for="female">Female</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="Hobbies">Hobbies:</label></th>
+                    <td>
+                        <input type="checkbox" name="Writing">
+                        <label for="writing">Writing</label>
+                        <input type="checkbox" name="Writing" >
+                        <label for="writing">Dancing</label>
+                        <input type="checkbox" name="Writing">
+                        <label for="writing">Gaming</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="DOb">Date of Birth:</label></th>
+                    <td><input type="date" required="required" name="dob"></td>
+                </tr>
+            </table>
+
+            <button>Submit</button>
+        </form>
+    </div>
+</body>
+</html>
